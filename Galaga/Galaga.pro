@@ -13,8 +13,21 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    menuwindow.cpp \
+    threadpstart.cpp \
+    userinputhandler.cpp \
+    gameloopthread.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    menuwindow.h \
+    Structs.h \
+    threadpstart.h \
+    userinputhandler.h \
+    gameloopthread.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    menuwindow.ui
+
+RESOURCES += \
+    assets.qrc

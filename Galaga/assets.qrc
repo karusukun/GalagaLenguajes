@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/miscelanious">
+        <file>assets/press-start-70.png</file>
+        <file>assets/playerShip3_red.png</file>
+        <file>assets/numeral0.png</file>
+        <file>assets/numeral1.png</file>
+        <file>assets/numeral2.png</file>
+        <file>assets/numeral3.png</file>
+        <file>assets/numeral4.png</file>
+        <file>assets/numeral5.png</file>
+        <file>assets/numeral6.png</file>
+        <file>assets/numeral7.png</file>
+        <file>assets/numeral8.png</file>
+        <file>assets/numeral9.png</file>
+        <file>assets/numeralX.png</file>
+        <file>assets/playerLife3_red.png</file>
+    </qresource>
+    <qresource prefix="/background">
+        <file>assets/farback.gif</file>
+    </qresource>
+    <qresource prefix="/gameElement">
+        <file>assets/laserBlue01.png</file>
+        <file>assets/laserBlue02.png</file>
+        <file>assets/laserBlue03.png</file>
+        <file>assets/laserBlue04.png</file>
+        <file>assets/laserBlue05.png</file>
+        <file>assets/laserBlue06.png</file>
+        <file>assets/laserBlue07.png</file>
+        <file>assets/laserBlue08.png</file>
+        <file>assets/laserBlue09.png</file>
+        <file>assets/laserBlue10.png</file>
+        <file>assets/laserBlue11.png</file>
+        <file>assets/laserRed.png</file>
+        <file>assets/laserRedShot.png</file>
+    </qresource>
+</RCC>
