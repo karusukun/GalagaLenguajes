@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     menuwindow.cpp \
     threadpstart.cpp \
     userinputhandler.cpp \
-    gameloopthread.cpp
+    gameloopthread.cpp \
+    beizerCurve.cpp
 
 HEADERS  += mainwindow.h \
     menuwindow.h \
     Structs.h \
     threadpstart.h \
     userinputhandler.h \
-    gameloopthread.h
+    gameloopthread.h \
+    beizerCurve.h
 
 FORMS    += mainwindow.ui \
     menuwindow.ui
