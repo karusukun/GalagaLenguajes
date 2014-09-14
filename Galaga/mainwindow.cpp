@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     playerBullets = new QList<PlayerBeam*>();
     enemies = new QList<enemy_T*>();
     scoreNumbers = new QList<QLabel*>();
+    Lives = new QList<QLabel*>();
 
     //Inicializacion variables misc
     numbers[0] = ":/miscelanious/assets/numeral0.png";
@@ -41,26 +42,10 @@ MainWindow::MainWindow(QWidget *parent) :
     numbers[8] = ":/miscelanious/assets/numeral8.png";
     numbers[9] = ":/miscelanious/assets/numeral9.png";
 
-
-
-    //MERAMENTE PARA PRUEBAS
-
-
-    //NORMAL, DISPARADOR, REGRESADOR, REGDIS, BOSS
-    QLabel* labelenemigo1 = new QLabel();
-    labelenemigo1->setParent(this);
-    enemies->append(newEnemy(NORMAL,1,labelenemigo1,100, 50 ));
-
-    QLabel* labelenemigo2 = new QLabel();
-    labelenemigo2->setParent(this);
-    enemies->append(newEnemy(NORMAL,1,labelenemigo2,300, 50 ));
-
-    QLabel* labelenemigo3 = new QLabel();
-    labelenemigo3->setParent(this);
-    enemies->append(newEnemy(NORMAL,1,labelenemigo3,500, 50 ));
-
-
     //----------------------------------
+
+    //
+    generateNextLevel();
 
     //Asignación de los Threads
     this->gameloop = new GameLoopThread(true);
@@ -199,6 +184,138 @@ void MainWindow::clearScore()
     }
 }
 
+void MainWindow::refreshLives()
+{
+    if(playerHitted)
+    {
+        playerHitted = false;
+        clearLives();
+
+        int lives = player->lives;
+        int position = GAME_WIDTH - 150;
+
+        for(int i = 0; i < lives; i++)
+        {
+            QLabel* label = new QLabel();
+            QPixmap pix(":/miscelanious/assets/playerLife3_red.png");
+
+            label->setParent(this);
+            label->setPixmap(pix);
+
+            label->move(position,30);
+            label->show();
+            position +=40;
+            Lives->append(label);
+
+
+        }
+
+    }
+}
+
+void MainWindow::clearLives()
+{
+    for(int i = 0; i < Lives->size(); i++)
+    {
+        delete Lives->at(i);
+        Lives->removeAt(i);
+        i--;
+    }
+}
+
+void MainWindow::generateNextLevel()
+{
+    int posicionX = 200;
+    int posicionY = 50;
+
+    enemyType_T enemigos[3][10];
+
+    if(level%5 == 0)
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            enemigos[0][i] = DISPARADOR;
+        }
+        for(int i = 1; i < 3; i++)
+        {
+            for(int j = 0; j < 10; j++)
+            {
+                enemigos[i][j] = NORMAL;
+            }
+        }
+    }
+    else if(level%5 == 1)
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            enemigos[0][i] = DISPARADOR;
+            enemigos[2][i] = NORMAL;
+        }
+
+        for(int i = 0; i < 5; i++)
+        {
+            enemigos[1][i] = DISPARADOR;
+            enemigos[1][i+5] = NORMAL;
+        }
+    }
+    else if(level%5 == 2)
+    {
+        for(int i = 0; i < 3; i++ )
+        {
+            for(int j = 0; j < 10; j++)
+            {
+                enemigos[i][j] = DISPARADOR;
+            }
+        }
+    }
+    else if(level%5== 3)
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            enemigos[0][i] = REGRESADOR;
+            enemigos[1][i] = DISPARADOR;
+            enemigos[2][i] = NORMAL;
+        }
+    }
+    else if(level%5 == 4)
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            enemigos[2][i] = NORMAL;
+            enemigos[1][i] = DISPARADOR;
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            enemigos[0][i] = REGRESADOR;
+            enemigos[0][i+5] = REGDIS;
+        }
+    }
+
+    if(this->level%5 == 4)
+    {
+        posicionX +=200;
+        //CODIGO PARA CREAR EL BOSS AQUI
+    }
+
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 10; j++)
+        {
+            //CODIGO PARA EL MOVIMIENTO AQUI
+            QLabel* label = new QLabel();
+            label->setParent(this);
+            label->show();
+
+            enemy_T* temp = newEnemy(enemigos[i][j],1,label,posicionX,posicionY);
+
+            enemies->append(temp);
+            posicionX += 60;
+        }
+        posicionY += 100;
+        posicionX = 200;
+    }
+}
+
 
 void MainWindow::gameUpdate()
 {
@@ -257,7 +374,14 @@ void MainWindow::gameUpdate()
         }
     }
 
+    if(enemies->size() == 0)
+    {
+        this->level++;
+        generateNextLevel();
+    }
+
     refreshScore();
+    refreshLives();
 
 }
 

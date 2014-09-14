@@ -186,3 +186,7 @@ int checkEnemyValue(enemyType_T type)
         break;
     }
 }
+
+
+
+

@@ -26,16 +26,24 @@ private:
     bool running;
     GameLoopThread *gameloop;
     playerShip * player;
+    int level = 1;
     QList<PlayerBeam*>* playerBullets;
     QList<enemy_T*>* enemies;
     char* numbers[10];
     QList<QLabel*>* scoreNumbers;
+    QList<QLabel*>* Lives;
     bool enemyKilled = false;
+    bool playerHitted = true;
+    enemy_T* enemigos[][10];
+
 
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent *event);
     void refreshScore();
     void clearScore();
+    void refreshLives();
+    void clearLives();
+    void generateNextLevel();
 
 public slots:
     void gameUpdate();
