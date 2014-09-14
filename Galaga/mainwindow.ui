@@ -17,27 +17,31 @@
    <string notr="true">#MainWindow
 {
 	
-	background-image: url(:/background/assets/farback.gif);
+	alternate-background-color: rgb(12, 12, 12);
+	border-color: rgb(0, 0, 0);
+	color: rgb(0, 0, 0);
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>881</width>
-      <height>511</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#graphicsView
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QFrame" name="backgroundFrame">
+      <property name="styleSheet">
+       <string notr="true">#backgroundFrame
 {
 	
 	background-image: url(:/background/assets/farback.gif);
 }</string>
-    </property>
-   </widget>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

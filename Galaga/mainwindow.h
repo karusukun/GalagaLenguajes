@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include "mainwindow.h"
-#include "gameloopthread.h"
+#include "DataLibrary.h"
+#include "qlist.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,15 +19,23 @@ public:
     ~MainWindow();
 
     //metodos
-    playerShip* newPlayerShip();
+    playerShip* newPlayerShip(AspectRatioPixmapLabel* label);
 
 private:
     Ui::MainWindow *ui;
-    void keyPressEvent(QKeyEvent* event);
     bool running;
     GameLoopThread *gameloop;
     playerShip * player;
+    QList<PlayerBeam*>* playerBullets;
+    QList<enemy_T*>* enemies;
+    char* numbers[10];
+    QList<QLabel*>* scoreNumbers;
+    bool enemyKilled = false;
 
+    void keyPressEvent(QKeyEvent* event);
+    void keyReleaseEvent(QKeyEvent *event);
+    void refreshScore();
+    void clearScore();
 
 public slots:
     void gameUpdate();

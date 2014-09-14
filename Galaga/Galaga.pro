@@ -16,17 +16,23 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     menuwindow.cpp \
     threadpstart.cpp \
-    userinputhandler.cpp \
     gameloopthread.cpp \
-    beizerCurve.cpp
+    beizerCurve.cpp \
+    Structs.cpp \
+    aspectratiopixmaplabel.cpp \
+    PlayerBeam.cpp \
+    enemy.cpp
 
 HEADERS  += mainwindow.h \
     menuwindow.h \
     Structs.h \
     threadpstart.h \
-    userinputhandler.h \
     gameloopthread.h \
-    beizerCurve.h
+    beizerCurve.h \
+    aspectratiopixmaplabel.h \
+    PlayerBeam.h \
+    DataLibrary.h \
+    enemy.h
 
 FORMS    += mainwindow.ui \
     menuwindow.ui

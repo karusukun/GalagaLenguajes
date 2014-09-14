@@ -32,5 +32,19 @@
         <file>assets/laserBlue11.png</file>
         <file>assets/laserRed.png</file>
         <file>assets/laserRedShot.png</file>
+        <file>assets/boss1.png</file>
+        <file>assets/boss2.png</file>
+        <file>assets/enemy1-1.png</file>
+        <file>assets/enemy1-2.png</file>
+        <file>assets/enemy1-3.png</file>
+        <file>assets/enemy2-1.png</file>
+        <file>assets/enemy2-2.png</file>
+        <file>assets/enemy3-1.png</file>
+        <file>assets/enemy3-2.png</file>
+        <file>assets/enemy4-1.png</file>
+        <file>assets/enemy4-2.png</file>
+        <file>assets/enemy4-3.png</file>
+        <file>assets/spaceship1.png</file>
+        <file>assets/spaceship2.png</file>
     </qresource>
 </RCC>

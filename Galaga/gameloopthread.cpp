@@ -27,7 +27,7 @@ void GameLoopThread::run()
         URDTimeMilis = timer.nsecsElapsed()/1000000;
         waitTime = targetTime - URDTimeMilis;
 
-        this->sleep(waitTime);
+        this->msleep(waitTime);
 
         this->totalTime += timer.nsecsElapsed();
         frameCount++;

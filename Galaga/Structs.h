@@ -4,12 +4,14 @@
 #include <stdio.h>
 #include <QtCore>
 #include <QThread>
+#include <QLabel>
+#include "qpixmap.h"
+#include <stdlib.h>
+#include "aspectratiopixmaplabel.h"
 
 #define GAME_WIDTH 1280
-#define GAME_HEIGHT 900
+#define GAME_HEIGHT 600
 #define FPS 30
-
-#include <stdlib.h>
 
 typedef struct point
 {
@@ -21,32 +23,21 @@ typedef struct point
 typedef struct playerShip
 {
     point* position = (point*)malloc(sizeof(point));
-    char sprites[][2];
     float dx,dy,speed;
-    int lives;
+    int lives,score;
     int width,height;
-    bool left,down,up,right;
+    bool left,down,up,right,firing;
+    long firingTimer, firingDelay;
+
+    //MERAMENTE PARA USO INTERFAZ
+    char* sprites[2];
+    AspectRatioPixmapLabel* myLabel;
+    bool movement = false;
 
 } playerShip;
 
-void updateShip(playerShip* player)
-{
-    if(player->left)
-    {
-        player->dx = -1*player->speed;
-    }
-    if(player->right)
-    {
-       player->dx = player->speed;
-    }
-    if(player->up)
-    {
-        player->dy = -1*player->speed;
-    }
-    if(player->down)
-    {
-        player->dy= player->speed;
-    }
-}
+void updateShip(playerShip* player);
+
+void drawShip(playerShip* player);
 
 #endif // STRUCTS_H

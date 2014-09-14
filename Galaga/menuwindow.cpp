@@ -11,9 +11,6 @@ MenuWindow::MenuWindow(QWidget *parent) :
 {
     mw = new MainWindow();
     ui->setupUi(this);
-    //QPixmap prueba(":/miscelanious/assets/press-start-70.png");
-    //this->ui->imagePresStart->setPixmap(prueba);
-
 
     ThreadPStart* pressChangeImage = new ThreadPStart();
 
