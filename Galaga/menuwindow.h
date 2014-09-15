@@ -5,7 +5,7 @@
 #include "mainwindow.h"
 #include "QtCore"
 #include "QDebug"
-
+#include "gameover.h"
 using namespace std;
 
 namespace Ui {
@@ -20,9 +20,12 @@ public:
     explicit MenuWindow(QWidget *parent = 0);
     ~MenuWindow();
     MainWindow *mw;
+    gameOver* go;
 
 public slots:
     void changeImageSlot(QString imagen);
+    void newGame();
+    void gameEnd();
 
 private:
     Ui::MenuWindow *ui;

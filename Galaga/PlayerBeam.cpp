@@ -2,7 +2,7 @@
 #include "QPixmap"
 #include "qdebug.h"
 
-PlayerBeam* newPlayerBeam(double angle, int x, int y, QLabel* label)
+PlayerBeam* newPlayerBeam(double angle, int x, int y, QLabel* label,int orientation)
 {
     PlayerBeam* tmp = (PlayerBeam*)malloc(sizeof(PlayerBeam));
     tmp->position = (point*)malloc(sizeof(point));
@@ -14,6 +14,7 @@ PlayerBeam* newPlayerBeam(double angle, int x, int y, QLabel* label)
     tmp->speed = 20;
     tmp->width = 8;
     tmp->heigh = 15;
+    tmp->orientation = orientation;
 
     tmp->imgPos = 0;
     tmp->sprites[0] = ":/gameElement/assets/laserBlue01.png";
@@ -40,8 +41,8 @@ PlayerBeam* newPlayerBeam(double angle, int x, int y, QLabel* label)
 
 bool UpdatePlayerBeam(PlayerBeam* beam)
 {
-    beam->position->x += beam->dx * beam->speed;
-    beam->position->y += beam->dy * beam->speed;
+    beam->position->x += beam->dx * beam->speed * beam->orientation;
+    beam->position->y += beam->dy * beam->speed * beam->orientation;
 
     if((beam->position->x < 0) || (beam->position->x > (GAME_WIDTH - beam->width))
             || (beam->position->y < 0) || (beam->position->y > (GAME_HEIGHT - beam->heigh)))

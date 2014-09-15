@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     Structs.cpp \
     aspectratiopixmaplabel.cpp \
     PlayerBeam.cpp \
-    enemy.cpp
+    enemy.cpp \
+    gameover.cpp
 
 HEADERS  += mainwindow.h \
     menuwindow.h \
@@ -32,10 +33,12 @@ HEADERS  += mainwindow.h \
     aspectratiopixmaplabel.h \
     PlayerBeam.h \
     DataLibrary.h \
-    enemy.h
+    enemy.h \
+    gameover.h
 
 FORMS    += mainwindow.ui \
-    menuwindow.ui
+    menuwindow.ui \
+    gameover.ui
 
 RESOURCES += \
     assets.qrc

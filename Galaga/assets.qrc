@@ -17,6 +17,7 @@
     </qresource>
     <qresource prefix="/background">
         <file>assets/farback.gif</file>
+        <file>assets/200010_screenshots_2012-06-21_00006.jpg</file>
     </qresource>
     <qresource prefix="/gameElement">
         <file>assets/laserBlue01.png</file>
@@ -46,5 +47,10 @@
         <file>assets/enemy4-3.png</file>
         <file>assets/spaceship1.png</file>
         <file>assets/spaceship2.png</file>
+    </qresource>
+    <qresource prefix="/music">
+        <file>assets/Dishonored- Main Menu Music (Game Theme).mp3</file>
+        <file>assets/Final Fantasy 7 Game Over Theme.mp3</file>
+        <file>assets/Starcraft- Terran theme 1 (Download).mp3</file>
     </qresource>
 </RCC>

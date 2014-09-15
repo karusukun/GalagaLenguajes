@@ -108,7 +108,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
             QLabel* tempLabel = new QLabel();
             tempLabel->setParent(this);
             tempLabel->show();
-            playerBullets->append(newPlayerBeam(270,player->position->x + (player->width/2),player->position->y+5,tempLabel));
+            playerBullets->append(newPlayerBeam(270,player->position->x + (player->width/2),player->position->y-20,tempLabel,1));
         }
 
 }
@@ -152,7 +152,6 @@ void MainWindow::refreshScore()
         {
             int index = num%10;
             num /= 10;
-            qDebug() << "index " << index << " num " << num;
             QPixmap temp(this->numbers[index]);
             QLabel* templbl = new QLabel();
             templbl->setPixmap(temp);
@@ -168,7 +167,6 @@ void MainWindow::refreshScore()
         {
             scoreNumbers->at(i)->move(start, 30);
             scoreNumbers->at(i)->show();
-            qDebug() << "pos X "<<start;
             start -=30;
         }
     }
@@ -293,7 +291,7 @@ void MainWindow::generateNextLevel()
 
     if(this->level%5 == 4)
     {
-        posicionX +=200;
+        posicionY +=200;
         //CODIGO PARA CREAR EL BOSS AQUI
     }
 
@@ -314,6 +312,8 @@ void MainWindow::generateNextLevel()
         posicionY += 100;
         posicionX = 200;
     }
+
+    posicionY = 50;
 }
 
 
@@ -340,11 +340,20 @@ void MainWindow::gameUpdate()
         enemyUpdate(enemies->at(i));
     }
 
+    QRect Rectplayer = player->myLabel->geometry();
     //Checkeo Colisiones
     for(int i = 0; i < playerBullets->size(); i++)
     {
         PlayerBeam* bullet = playerBullets->at(i);
         QRect Rectbullet = bullet->myLabel->geometry();
+
+        if(Rectbullet.intersects(Rectplayer))
+        {
+            player->lives--;
+            delete bullet->myLabel;
+            playerBullets->removeAt(i);
+            i--;
+        }
 
         for(int j = 0; j < enemies->size(); j++)
         {
@@ -361,6 +370,30 @@ void MainWindow::gameUpdate()
         }
 
     }
+    //Colisiones con el jugador
+
+
+    for(int i = 0; i < enemies->size(); i++)
+    {
+
+        QRect RectActEnemy = enemies->at(i)->image->geometry();
+        if(Rectplayer.intersects(RectActEnemy))
+        {
+            playerHitted = true;
+            player->lives--;
+            qDebug() << player->lives;
+            hit(enemies->at(i));
+        }
+    }
+
+
+
+    //check gmae over
+    if(player->lives <= 0)
+    {
+         emit gameEnd();
+    }
+
     //Checkeo Muerte de Enemigos
     for(int i = 0; i < enemies->size(); i++)
     {

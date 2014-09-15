@@ -14,6 +14,7 @@ typedef struct PlayerBeam
     int heigh;
     int width;
     int imgPos;
+    int orientation;
 
     // MERAMENTE PARA LOGICA
     char* sprites[11];
@@ -21,9 +22,10 @@ typedef struct PlayerBeam
 
 }PlayerBeam;
 
-bool UpdatePlayerBeam(PlayerBeam* beam);
-PlayerBeam* newPlayerBeam(double angle, int x, int y, QLabel* label);
-void DrawPlayerBeam(PlayerBeam* beam);
 
+
+bool UpdatePlayerBeam(PlayerBeam* beam);
+PlayerBeam* newPlayerBeam(double angle, int x, int y, QLabel* label, int orientation);
+void DrawPlayerBeam(PlayerBeam* beam);
 
 #endif // PLAYERBEAM_H

@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "DataLibrary.h"
 #include "qlist.h"
+#include <QtCore>
 
 namespace Ui {
 class MainWindow;
@@ -50,6 +51,8 @@ public slots:
     void gameDrawn();
     void gameRender();
 
+signals:
+    void gameEnd();
 };
 
 #endif // MAINWINDOW_H
